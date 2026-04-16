@@ -43,7 +43,7 @@ const HeroSection = () => (
             Book Service
           </a>
           <a
-            href="tel:+919999999999"
+            href="tel:+919908821555"
             className="border-2 border-hero-foreground/30 text-hero-foreground px-8 py-3.5 rounded-md font-heading font-semibold text-lg hover:bg-hero-foreground/10 transition uppercase tracking-wide"
           >
             Call Now

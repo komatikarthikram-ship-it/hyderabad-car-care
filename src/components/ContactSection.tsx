@@ -13,7 +13,7 @@ const ContactSection = () => {
     const message = form.message.trim();
     if (!name || !phone || !message) return;
     const whatsappMsg = encodeURIComponent(`Hi SS Auto Hub! I'm ${name}. ${message}. Contact me at ${phone}`);
-    window.open(`https://wa.me/919999999999?text=${whatsappMsg}`, "_blank");
+    window.open(`https://wa.me/919908821555?text=${whatsappMsg}`, "_blank");
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
     setForm({ name: "", phone: "", message: "" });
@@ -57,7 +57,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="font-heading font-semibold mb-1">Phone</h4>
-                  <a href="tel:+919999999999" className="text-primary hover:underline text-sm">+91 99999 99999</a>
+                  <a href="tel:+919908821555" className="text-primary hover:underline text-sm">+91 99088 21555</a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
