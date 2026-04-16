@@ -8,8 +8,20 @@ const values = [
 ];
 
 const AboutSection = () => (
-  <section id="about" className="section-padding bg-background">
-    <div className="container mx-auto">
+  <section id="about" className="section-padding bg-background relative overflow-hidden">
+    {/* Animated background elements */}
+    <motion.div
+      animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
+      transition={{ duration: 8, repeat: Infinity }}
+      className="absolute top-10 left-10 w-64 h-64 bg-primary rounded-full blur-3xl"
+    />
+    <motion.div
+      animate={{ scale: [1, 1.3, 1], opacity: [0.03, 0.08, 0.03] }}
+      transition={{ duration: 10, repeat: Infinity, delay: 2 }}
+      className="absolute bottom-10 right-10 w-80 h-80 bg-accent rounded-full blur-3xl"
+    />
+
+    <div className="container mx-auto relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -32,13 +44,31 @@ const AboutSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.15 }}
-            className="bg-card rounded-xl p-8 border border-border shadow-sm hover:shadow-md transition-shadow"
+            whileHover={{ y: -10, boxShadow: "0 20px 40px -15px rgba(249,115,22,0.2)" }}
+            className="bg-card rounded-xl p-8 border border-border shadow-sm transition-all relative group overflow-hidden"
           >
-            <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-5">
-              <v.icon className="text-primary" size={28} />
+            {/* Hover gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            <div className="relative z-10">
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-5"
+              >
+                <v.icon className="text-primary" size={28} />
+              </motion.div>
+              <h3 className="font-heading text-xl font-bold mb-3">{v.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{v.desc}</p>
             </div>
-            <h3 className="font-heading text-xl font-bold mb-3">{v.title}</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">{v.desc}</p>
+
+            {/* Animated border accent */}
+            <motion.div
+              className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary to-accent"
+              initial={{ width: "0%" }}
+              whileInView={{ width: "100%" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.5 + i * 0.2 }}
+            />
           </motion.div>
         ))}
       </div>

@@ -8,6 +8,7 @@ import "@fontsource/inter/600.css";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
+import StatsCounter from "@/components/StatsCounter";
 import ServicesSection from "@/components/ServicesSection";
 import ReviewsSection from "@/components/ReviewsSection";
 import GallerySection from "@/components/GallerySection";
@@ -20,6 +21,7 @@ const Index = () => (
     <Navbar />
     <HeroSection />
     <AboutSection />
+    <StatsCounter />
     <ServicesSection />
     <ReviewsSection />
     <GallerySection />
