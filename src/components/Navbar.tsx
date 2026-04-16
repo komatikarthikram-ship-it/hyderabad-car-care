@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, Phone, Moon, Sun } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -13,6 +13,18 @@ const navLinks = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [dark, setDark] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("theme") === "dark" ||
+        (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+    localStorage.setItem("theme", dark ? "dark" : "light");
+  }, [dark]);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-secondary/95 backdrop-blur-md border-b border-secondary">
@@ -32,6 +44,13 @@ const Navbar = () => {
               {l.label}
             </a>
           ))}
+          <button
+            onClick={() => setDark(!dark)}
+            className="p-2 rounded-md text-secondary-foreground/70 hover:text-primary transition-colors"
+            aria-label="Toggle theme"
+          >
+            {dark ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
           <a
             href="tel:+919908821555"
             className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-semibold hover:brightness-110 transition"
@@ -41,13 +60,22 @@ const Navbar = () => {
         </div>
 
         {/* Mobile toggle */}
-        <button
-          className="md:hidden text-secondary-foreground"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex md:hidden items-center gap-2">
+          <button
+            onClick={() => setDark(!dark)}
+            className="p-2 rounded-md text-secondary-foreground/70 hover:text-primary transition-colors"
+            aria-label="Toggle theme"
+          >
+            {dark ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+          <button
+            className="text-secondary-foreground"
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
